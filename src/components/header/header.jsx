@@ -6,7 +6,7 @@ import classNames from 'classnames';
 import Drawer from 'material-ui/Drawer';
 import AppBar from 'material-ui/AppBar';
 import Toolbar from 'material-ui/Toolbar';
-import List from 'material-ui/List';
+import List, { ListItem, ListItemIcon, ListItemText } from 'material-ui/List';
 import Typography from 'material-ui/Typography';
 import Divider from 'material-ui/Divider';
 import IconButton from 'material-ui/IconButton';
@@ -87,6 +87,8 @@ const themesStyles = theme => ({
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
+        opacity: 0.2,
+        cursor: "pointer"
     },
     list: {
         padding: "16px 24px"
@@ -106,6 +108,7 @@ class Header extends React.Component {
 
         this.handleDrawerOpen = this.handleDrawerOpen.bind(this);
         this.handleDrawerClose = this.handleDrawerClose.bind(this);
+        this.navaigateTo = this.navaigateTo.bind(this);
     }
 
     componentDidMount() {
@@ -118,6 +121,10 @@ class Header extends React.Component {
 
     handleDrawerClose = () => {
         this.setState({ open: false });
+    };
+
+    navaigateTo = (path) => {
+        browserHistory.push(path);
     };
 
     render() {
@@ -136,12 +143,13 @@ class Header extends React.Component {
                         <Typography type="title" align="left">{"Menu"}</Typography>
                     </div>
                     <Divider />
-                    <List className={classes.list}>
-                        <Link to="about">About Us</Link>
-                    </List>
-                    <Divider />
-                    <List className={classes.list}>
-                        <Link />
+                    <List>
+                        <ListItem button onClick={this.navaigateTo.bind(this,'about')}>
+                            <ListItemText primary="About Us" />
+                        </ListItem>
+                        <ListItem button onClick={this.navaigateTo.bind(this,'generic-search')}>
+                            <ListItemText primary="Generic Search" />
+                        </ListItem>
                     </List>
                 </div>
             </Drawer>
