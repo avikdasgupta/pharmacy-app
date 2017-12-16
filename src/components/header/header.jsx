@@ -54,11 +54,12 @@ const themesStyles = theme => ({
     drawerPaper: {
         height: '100%',
         width: drawerWidth,
+        backgroundColor: theme.palette.background.default
     },
     drawerHeader: {
         display: 'flex',
+        justifyContent: "space-between",
         alignItems: 'center',
-        justifyContent: 'flex-end',
         padding: '0 8px',
         ...theme.mixins.toolbar,
     },
@@ -86,6 +87,12 @@ const themesStyles = theme => ({
             easing: theme.transitions.easing.easeOut,
             duration: theme.transitions.duration.enteringScreen,
         }),
+    },
+    list: {
+        padding: "16px 24px"
+    },
+    justify: {
+        justifyContent: "flex-end"
     }
 });
 
@@ -126,13 +133,11 @@ class Header extends React.Component {
                 open={open}>
                 <div className={classes.drawerInner}>
                     <div className={classes.drawerHeader}>
-                        <IconButton onClick={this.handleDrawerClose}>
-                            {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
-                        </IconButton>
+                        <Typography type="title" align="left">{"Menu"}</Typography>
                     </div>
                     <Divider />
                     <List className={classes.list}>
-                        <Link to="about" />
+                        <Link to="about">About Us</Link>
                     </List>
                     <Divider />
                     <List className={classes.list}>
@@ -166,7 +171,7 @@ class Header extends React.Component {
                     <main
                         className={classNames(classes.content, {
                             [classes.contentShift]: open
-                        })}>
+                        })} onClick={this.handleDrawerClose}>
                         {this.props.children}
                     </main>
                 </div>
