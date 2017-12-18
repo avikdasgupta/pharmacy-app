@@ -5,6 +5,7 @@ import { withStyles } from 'material-ui/styles';
 import Table, { TableBody, TableCell, TableHead, TableRow } from 'material-ui/Table';
 import Paper from 'material-ui/Paper';
 import Grid from "material-ui/Grid";
+import Typography from "material-ui/Typography"
 
 import GenericSearchTable from "../../components/generic-search-table/generic-search-table";
 const themeStyles = theme => {
@@ -19,6 +20,9 @@ class GenericSearch extends React.Component {
     render() {
         return(
             <Grid container>
+                <Grid item xs={12} sm={12} md={12} lg={12}>
+                    <Typography align="left" type="headline">Generic</Typography>
+                </Grid>
                 <Grid item xs={1} sm={1} md={2} lg={2} />
                 <Grid item xs={11} sm={11} md={8} lg={8}>
                     <GenericSearchTable />
